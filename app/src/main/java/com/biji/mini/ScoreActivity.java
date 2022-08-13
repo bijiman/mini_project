@@ -27,8 +27,8 @@ public class ScoreActivity extends AppCompatActivity {
     }
 
     private void loadActivitiesList() {
-        appDatabase db = appDatabase.getDbInstance(getApplicationContext());
-        List<insertSHigh> list = db.insertSHighDao().getAll();
-        ScoreAdapter.setScoreList(list);
+            appDatabase db = appDatabase.getDbInstance(getApplicationContext());
+            List<insertSHigh> list = db.insertSHighDao().getAll();
+            ScoreAdapter.setScoreList(list);
     }
 }

@@ -14,4 +14,7 @@ public interface insertSHighDao {
 
     @Query("SELECT * FROM insertSHigh")
     List<insertSHigh> getAll();
+
+    @Insert
+    void inserta(insertSHigh... insertSHigh);
 }

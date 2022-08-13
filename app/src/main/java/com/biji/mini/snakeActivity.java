@@ -115,7 +115,13 @@ public class snakeActivity extends AppCompatActivity implements SurfaceHolder.Ca
         });
 
         MaterialButton backBtn = findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(view -> startActivity(new Intent(this, MainActivity.class)));
+        backBtn.setOnClickListener(view -> {
+            startActivity(new Intent(this, MainActivity.class));
+        });
+        MaterialButton scoreBtn = findViewById(R.id.scoreBtn1);
+        scoreBtn.setOnClickListener(view -> {
+            startActivity(new Intent(this,ScoreActivity.class));
+        });
 
     }
 
@@ -137,6 +143,7 @@ public class snakeActivity extends AppCompatActivity implements SurfaceHolder.Ca
     }
     private void init()
     {
+
         snakePointsList.clear();
 
         scoreTV.setText("0");
@@ -182,6 +189,7 @@ public class snakeActivity extends AppCompatActivity implements SurfaceHolder.Ca
         positionX = (pointSize * randomXPosition) + pointSize;
         positionY = (pointSize * randomYposition) + pointSize;
     }
+
 
     private void moveSnake()
     {
@@ -233,7 +241,6 @@ public class snakeActivity extends AppCompatActivity implements SurfaceHolder.Ca
                     AlertDialog.Builder builder = new AlertDialog.Builder(snakeActivity.this);
                     builder.setMessage("Your Score = "+score);
 
-
                     builder.setTitle("Game Over");
                     builder.setCancelable(true);
                     builder.setPositiveButton("Start Again?", new DialogInterface.OnClickListener() {
@@ -248,16 +255,19 @@ public class snakeActivity extends AppCompatActivity implements SurfaceHolder.Ca
                         public void run() {
                             builder.show();
                         }
+
+
                     });
                 }
                 else {
                     canvas = surfaceHolder.lockCanvas();
-                    canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
+                    canvas.drawColor(Color.YELLOW, PorterDuff.Mode.CLEAR);
                     canvas.drawCircle(snakePointsList.get(0).getPositionX(), snakePointsList.get(0).getPositionY(), pointSize, createPointColor());
                     canvas.drawCircle(positionX, positionY, pointSize, createPointColor());
 
                     for (int i = 1; i < snakePointsList.size(); i++)
                     {
+
                         int getTempPositionX = snakePointsList.get(i).getPositionX();
                         int getTempPositionY = snakePointsList.get(i).getPositionY();
 
@@ -267,7 +277,10 @@ public class snakeActivity extends AppCompatActivity implements SurfaceHolder.Ca
 
                         headPositionX = getTempPositionX;
                         headPositionY = getTempPositionY;
+
+
                     }
+
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
 
@@ -290,7 +303,7 @@ public class snakeActivity extends AppCompatActivity implements SurfaceHolder.Ca
         });
     }
 
-    private boolean checkGameOver(int headPositionX, int headPositionY)
+    public boolean checkGameOver(int headPositionX, int headPositionY)
     {
         boolean gameOver = false;
 

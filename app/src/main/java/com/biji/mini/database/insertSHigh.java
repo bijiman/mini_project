@@ -18,7 +18,7 @@ public class insertSHigh {
 
     public static insertSHigh[] isiScore() {
         return new insertSHigh[]{
-                new insertSHigh(500),
+                new insertSHigh(0),
         };
     }
 }
